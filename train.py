@@ -37,7 +37,7 @@ BATCH_SIZE = 16
 NUM_WORKERS = 4
 EPOCHS = 45
 
-LR = 3e-4
+LR = 5e-4
 MIN_LR = 1e-6
 WEIGHT_DECAY = 1e-4
 GRAD_CLIP_NORM = 1.0
@@ -109,7 +109,7 @@ class LandslideModel(nn.Module):
     def __init__(self, in_channels=IN_CHANNELS, classes=NUM_CLASSES):
         super().__init__()
         self.core = smp.UnetPlusPlus(
-            encoder_name="efficientnet-b4",
+            encoder_name="efficientnet-b0",
             encoder_weights="imagenet",
             in_channels=in_channels,
             classes=classes,
