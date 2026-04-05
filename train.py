@@ -58,14 +58,14 @@ CHECKPOINT_PATH = os.path.join(
 
 class LandslideModel(nn.Module):
     """
-    U-Net++ with EfficientNet-B4 encoder.
+    U-Net++ with ResNeSt50d encoder.
     Supports 14-channel input and outputs a single segmentation logit map.
     """
 
     def __init__(self, in_channels=IN_CHANNELS, classes=NUM_CLASSES):
         super().__init__()
         self.core = smp.UnetPlusPlus(
-            encoder_name="efficientnet-b4",
+            encoder_name="timm-resnest50d",
             encoder_weights="imagenet",
             in_channels=in_channels,
             classes=classes,
