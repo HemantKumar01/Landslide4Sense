@@ -37,9 +37,9 @@ BATCH_SIZE = 16
 NUM_WORKERS = 4
 EPOCHS = 45
 
-LR = 1e-3
-MIN_LR = 1e-5
-WEIGHT_DECAY = 1e-5
+LR = 3e-4
+MIN_LR = 1e-6
+WEIGHT_DECAY = 1e-4
 GRAD_CLIP_NORM = 1.0
 
 AMP_ENABLED = torch.cuda.is_available()
