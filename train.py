@@ -114,7 +114,7 @@ class LandslideModel(nn.Module):
             in_channels=in_channels,
             classes=classes,
             activation=None,
-            decoder_attention_type="scse",
+            decoder_attention_type=None,
         )
 
         seg_head = self.core.segmentation_head
@@ -126,7 +126,6 @@ class LandslideModel(nn.Module):
 
     def forward(self, x):
         features = self.core(x)
-        features = self.cbam(features)
         return self.seg_head(features)
 
 

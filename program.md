@@ -112,12 +112,6 @@ Suggested status values:
 - `discard`: no meaningful improvement
 - `crash`: failed run (OOM/bug)
 
-## Baseline targets from assignment
-
-- Baseline test F1: `74.54%`
-- Baseline test IoU: `59.45%`
-
-Keep changes that move the model beyond these baselines while remaining reproducible and stable.
 
 
 ## The experiment loop
