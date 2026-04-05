@@ -1,0 +1,15 @@
+commit	val_f1	val_iou	val_z	test_f1	test_iou	test_z	status	description
+ef5294a	67.02	50.40	60.37	62.17	45.11	55.34	keep	baseline
+f48bbdb	66.39	49.69	59.71	63.78	46.82	57.00	keep	remove unused cbam
+b76b540	63.44	46.45	56.64	62.33	45.27	55.50	discard	scse decoder attention
+de60d35	67.60	51.05	60.98	62.99	45.98	56.19	keep	ResNeSt50d encoder
+33259bd	67.01	50.39	60.36	63.17	46.16	56.36	discard	ResNeSt101e encoder
+aed35fb							crash	mit_b3 encoder unsupported
+b6b7242	66.90	50.26	60.24	67.37	50.80	60.75	discard	Add BCE loss to focal + dice
+46fac14	68.28	51.84	61.71	67.00	50.37	60.35	keep	Custom Loss with BCE
+75c43e9	67.56	51.01	60.94	65.71	48.94	59.00	discard	DeepLabV3Plus with ResNeSt50d
+98a0587	66.71	50.05	60.05	64.92	48.06	58.18	discard	BS 32, LR 5e-4
+c42a870	68.65	52.26	62.09	64.29	47.38	57.53	discard	TTA (H+V flip)
+5262041	67.31	50.73	60.68	66.15	49.42	59.46	discard	LR 1e-3, WD 1e-2
+0b36545	66.01	49.27	59.31	63.26	46.26	56.46	discard	dice_weight=2.0
+e4d978f	67.42	50.85	60.79	64.54	47.65	57.78	discard	match CosineAnnealingLR T_max to actual epochs
