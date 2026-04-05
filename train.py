@@ -121,17 +121,21 @@ class FocalLoss(nn.Module):
 
 
 class CombinedLoss(nn.Module):
-    def __init__(self, focal_weight=1.0, dice_weight=1.0):
+    def __init__(self, focal_weight=1.0, dice_weight=1.0, bce_weight=1.0):
         super().__init__()
         self.focal = FocalLoss(alpha=0.75, gamma=2.0)
         self.dice = DiceLoss(smooth=1.0)
+        self.bce = nn.BCEWithLogitsLoss()
         self.focal_weight = focal_weight
         self.dice_weight = dice_weight
+        self.bce_weight = bce_weight
 
     def forward(self, logits, targets):
-        return self.focal_weight * self.focal(
-            logits, targets
-        ) + self.dice_weight * self.dice(logits, targets)
+        return (
+            self.focal_weight * self.focal(logits, targets)
+            + self.dice_weight * self.dice(logits, targets)
+            + self.bce_weight * self.bce(logits, targets)
+        )
 
 
 # ---------------------------------------------------------------------------
