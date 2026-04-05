@@ -56,53 +56,9 @@ CHECKPOINT_PATH = os.path.join(
 # ---------------------------------------------------------------------------
 
 
-class ChannelAttention(nn.Module):
-    def __init__(self, channels, reduction=16):
-        super().__init__()
-        reduced = max(1, channels // reduction)
-        self.avg_pool = nn.AdaptiveAvgPool2d(1)
-        self.max_pool = nn.AdaptiveMaxPool2d(1)
-        self.mlp = nn.Sequential(
-            nn.Linear(channels, reduced, bias=False),
-            nn.ReLU(inplace=True),
-            nn.Linear(reduced, channels, bias=False),
-        )
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, x):
-        b, c = x.shape[:2]
-        avg_w = self.mlp(self.avg_pool(x).view(b, c))
-        max_w = self.mlp(self.max_pool(x).view(b, c))
-        w = self.sigmoid(avg_w + max_w).view(b, c, 1, 1)
-        return x * w
-
-
-class SpatialAttention(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.conv = nn.Conv2d(2, 1, kernel_size=7, padding=3, bias=False)
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, x):
-        avg = x.mean(dim=1, keepdim=True)
-        max_, _ = x.max(dim=1, keepdim=True)
-        w = self.sigmoid(self.conv(torch.cat([avg, max_], dim=1)))
-        return x * w
-
-
-class CBAM(nn.Module):
-    def __init__(self, channels, reduction=16):
-        super().__init__()
-        self.ca = ChannelAttention(channels, reduction=reduction)
-        self.sa = SpatialAttention()
-
-    def forward(self, x):
-        return self.sa(self.ca(x))
-
-
 class LandslideModel(nn.Module):
     """
-    U-Net++ with EfficientNet-B4 encoder and CBAM refinement on decoder output.
+    U-Net++ with EfficientNet-B4 encoder.
     Supports 14-channel input and outputs a single segmentation logit map.
     """
 
@@ -117,16 +73,8 @@ class LandslideModel(nn.Module):
             decoder_attention_type=None,
         )
 
-        seg_head = self.core.segmentation_head
-        head_in_channels = seg_head[0].in_channels
-
-        self.core.segmentation_head = nn.Identity()
-        self.cbam = CBAM(head_in_channels)
-        self.seg_head = seg_head
-
     def forward(self, x):
-        features = self.core(x)
-        return self.seg_head(features)
+        return self.core(x)
 
 
 def count_trainable_params(model):
