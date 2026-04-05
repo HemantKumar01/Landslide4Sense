@@ -1,0 +1,57 @@
+========================================================================
+Assignment 2 | Landslide Detection (Binary Segmentation)
+Model: U-Net++ (EfficientNet-B4) + CBAM | Input channels: 14
+Metric focus: F1 and IoU
+========================================================================
+Trainable parameters: 50,915,121
+Device: cuda
+Epochs: 18 | Batch size: 16
+
+* Ep 001/18 | TL 0.9439 | VL 0.7773 | P 35.03 R 77.54 F1 48.26 IoU 31.81 | thr 0.50 | lr 2.98e-04 | 15.9s
+* Ep 002/18 | TL 0.4931 | VL 0.6152 | P 48.22 R 51.20 F1 49.67 IoU 33.04 | thr 0.40 | lr 2.91e-04 | 15.9s
+* Ep 003/18 | TL 0.4233 | VL 0.5190 | P 56.73 R 63.69 F1 60.01 IoU 42.87 | thr 0.40 | lr 2.80e-04 | 15.2s
+  Ep 004/18 | TL 0.4009 | VL 0.5394 | P 56.10 R 53.71 F1 54.88 IoU 37.81 | thr 0.30 | lr 2.65e-04 | 15.6s
+* Ep 005/18 | TL 0.3928 | VL 0.5175 | P 49.34 R 77.27 F1 60.23 IoU 43.09 | thr 0.30 | lr 2.47e-04 | 15.6s
+* Ep 006/18 | TL 0.3781 | VL 0.4893 | P 64.70 R 66.32 F1 65.50 IoU 48.70 | thr 0.70 | lr 2.25e-04 | 16.1s
+* Ep 007/18 | TL 0.3664 | VL 0.4803 | P 59.67 R 74.62 F1 66.31 IoU 49.60 | thr 0.70 | lr 2.02e-04 | 15.3s
+* Ep 008/18 | TL 0.3655 | VL 0.4381 | P 70.99 R 64.18 F1 67.41 IoU 50.84 | thr 0.62 | lr 1.76e-04 | 16.2s
+  Ep 009/18 | TL 0.3493 | VL 0.4567 | P 65.38 R 68.16 F1 66.74 IoU 50.09 | thr 0.62 | lr 1.50e-04 | 14.7s
+  Ep 010/18 | TL 0.3448 | VL 0.4632 | P 66.26 R 65.99 F1 66.12 IoU 49.39 | thr 0.70 | lr 1.25e-04 | 15.9s
+  Ep 011/18 | TL 0.3436 | VL 0.4661 | P 64.83 R 68.70 F1 66.71 IoU 50.05 | thr 0.70 | lr 9.94e-05 | 14.8s
+  Ep 012/18 | TL 0.3363 | VL 0.4722 | P 63.45 R 69.09 F1 66.15 IoU 49.42 | thr 0.70 | lr 7.58e-05 | 16.9s
+  Ep 013/18 | TL 0.3332 | VL 0.4793 | P 63.10 R 68.20 F1 65.55 IoU 48.75 | thr 0.70 | lr 5.44e-05 | 14.3s
+  Ep 014/18 | TL 0.3262 | VL 0.4759 | P 62.21 R 69.86 F1 65.81 IoU 49.04 | thr 0.70 | lr 3.60e-05 | 15.5s
+  Ep 015/18 | TL 0.3228 | VL 0.4659 | P 63.18 R 69.44 F1 66.16 IoU 49.43 | thr 0.70 | lr 2.10e-05 | 15.0s
+* Ep 016/18 | TL 0.3223 | VL 0.4350 | P 70.07 R 64.96 F1 67.42 IoU 50.85 | thr 0.70 | lr 1.00e-05 | 16.8s
+  Ep 017/18 | TL 0.3171 | VL 0.4651 | P 64.49 R 67.55 F1 65.98 IoU 49.24 | thr 0.70 | lr 3.27e-06 | 15.3s
+  Ep 018/18 | TL 0.3185 | VL 0.4684 | P 63.81 R 67.99 F1 65.83 IoU 49.07 | thr 0.70 | lr 1.00e-06 | 16.1s
+Time limit of 280s reached, stopping training.
+
+Loading best checkpoint...
+
+========================================================================
+Best Validation Snapshot
+  Epoch      : 16
+  Threshold  : 0.70
+  Precision  : 70.07%
+  Recall     : 64.96%
+  F1         : 67.42%
+  IoU        : 50.85%
+========================================================================
+Validation Metrics
+  Precision  : 70.07%
+  Recall     : 64.96%
+  F1 Score   : 67.42%
+  IoU        : 50.85%
+  Z          : 60.79
+Test Metrics
+  Precision  : 65.29%
+  Recall     : 63.81%
+  F1 Score   : 64.54%
+  IoU        : 47.65%
+  Z          : 57.78
+Run Summary
+  Training seconds     : 281.0
+  Trainable parameters : 50,915,121
+  Checkpoint           : /home/sandeep/research-work/autoresearch/best_model.pth
+========================================================================
